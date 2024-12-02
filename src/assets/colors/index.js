@@ -11,8 +11,8 @@ export const colors = {
   },
   "dark": {
     "background": "#242324",
-    "box-background": "#464546",
-    "box-border-color": "#3A3B3C",
+    "box-background": "#3A3B3C",
+    "box-border-color": "#60F09A",
     "font-color": "#FFFFFF",
     "primary": "#127848",
     "primary-light": "#60F09A",

@@ -1,19 +1,128 @@
-import React, {useState, useEffect} from 'react';
-import { View, TouchableOpacity, Text, Button, TextInput } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, TouchableOpacity, ScrollView, Image } from 'react-native';
 import { useGlobal } from '../../hooks/useGlobal';
-
-import styles from "./styles";
-import {Header} from '../../components';
+import styles from './styles';
+import { Header } from '../../components';
+import { useNavigation } from '@react-navigation/native';
 
 export const Exams = () => {
-  const {globalProps, setGlobalProps} = useGlobal();
+  const { globalProps, setGlobalProps } = useGlobal();
   const s = styles();
+
+  const [activeTab, setActiveTab] = useState('Disponível');
+  const [selectedExam, setSelectedExam] = useState(null);
+
+  const navigation = useNavigation();
+
+  const exams = [
+    {
+      id: 1,
+      type: 'Exame Sangue',
+      hospital: 'Hospital Albert Einstein',
+      date: '11/12/2023',
+      icon: require('../../assets/images/InjecaoIcon.png'),
+    },
+    {
+      id: 2,
+      type: 'Exame Geral',
+      hospital: 'Hospital Albert Einstein',
+      date: '11/12/2023',
+      icon: require('../../assets/images/ExamesIcon.png'),
+    },
+    {
+      id: 3,
+      type: 'Exame Urina',
+      hospital: 'Hospital Albert Einstein',
+      date: '11/12/2023',
+      icon: require('../../assets/images/RinsIcon.png'),
+    },
+    {
+      id: 4,
+      type: 'Exame Sangue',
+      hospital: 'Hospital Albert Einstein',
+      date: '11/12/2023',
+      icon: require('../../assets/images/InjecaoIcon-1.png'),
+    },
+  ];
+
+  const handleTabChange = (tab) => {
+    setActiveTab(tab);
+  };
+
+  const handleExamClick = (examId) => {
+    setSelectedExam(examId);
+  };
+
+  const EditButton = () => {
+    return (
+      <View>
+        <TouchableOpacity style={{
+          width: 60,
+          height: 60,
+          position: 'absolute',
+          bottom: 20,
+          right: 20,
+          borderRadius: 60/2,
+          justifyContent: 'center',
+          alignItems: 'center',
+          shadowColor: '#000',
+          shadowOffset: { width: 0, height: 1 },
+          shadowOpacity: 0.5,
+          shadowRadius: 1,
+          elevation: 15,
+          backgroundColor: '#1DBF73'
+        }} onPress={() => navigation.navigate("NewExam")}>
+          <Image source={require('../../assets/images/AdicionarIcon.png')}/>
+        </TouchableOpacity>
+      </View>
+    )
+  }
 
   return (
     <>
-      <Header/>
+      <Header />
       <View style={s.container}>
+        {/* Tabs */}
+        <View style={s.tabs}>
+          <TouchableOpacity
+            style={[s.tab, activeTab === 'Disponível' && s.tabActive]}
+            onPress={() => handleTabChange('Disponível')}
+          >
+            <Text style={activeTab === 'Disponível' ? s.tabTextActive : s.tabText}>Disponível</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={[s.tab, activeTab === 'Histórico' && s.tabActive]}
+            onPress={() => handleTabChange('Histórico')}
+          >
+            <Text style={activeTab === 'Histórico' ? s.tabTextActive : s.tabText}>Histórico</Text>
+          </TouchableOpacity>
+        </View>
+
+        {/* Exam List */}
+        <ScrollView contentContainerStyle={s.examList}>
+          {exams.map((exam) => (
+            <TouchableOpacity
+              key={exam.id}
+              onPress={() => handleExamClick(exam.id)}
+              style={[
+                s.examCard,
+                selectedExam === exam.id ? s.examCardActive : s.examCardInactive,
+              ]}
+            >
+              <Image source={exam.icon} style={{ width: 22, height: 22 }} />
+              <View style={s.examDetails}>
+                <Text style={[s.examType, selectedExam === exam.id && s.examTextActive]}>
+                  {exam.type}
+                </Text>
+                <Text style={[s.examHospital, selectedExam === exam.id && s.examTextActive]}>{exam.hospital}</Text>
+              </View>
+              <Text style={[s.examDate, selectedExam === exam.id && s.examTextActive]}>{exam.date}</Text>
+            </TouchableOpacity>
+          ))}
+        </ScrollView>
+
+        <EditButton />
       </View>
     </>
-  )
+  );
 };

@@ -15,7 +15,7 @@ const initialProps = {
   queries: [],
   queriesHistoric: [],
   isAppLoading: true,
-  signed: false
+  signed: false,
 };
 
 const reducer = (globalProps, {key, value}) => {

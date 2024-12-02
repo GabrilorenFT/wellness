@@ -18,7 +18,7 @@ export const Header = ({}) => {
       <View style={s.container}>
         <View style={s.content}>
           <Text style={s.text} numberOfLines={1}>
-            {globalProps?.name}
+            {globalProps?.name ? globalProps.name : "Apenas para mostrar campo de nome"}
           </Text>
           <TouchableOpacity style={s.buttonNotif} activeOpacity={1}>
             <NotificationIcon

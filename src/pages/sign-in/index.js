@@ -9,12 +9,15 @@ import {Input, ModalPinPassword, ModalLoading} from '../../components';
 
 import logoName from "../../assets/images/logoName.png";
 
+
 export const SignInScreen = () => {
   const {globalProps, setGlobalProps} = useGlobal();
   const [modalVisible, setModalVisible] = useState(false);
   const [modalLoadingSignIn, setModalLoadingSignIn] = useState(false);
   const navigation = useNavigation();
   const s = styles();
+
+
 
   const SignIn = () => {
     setModalLoadingSignIn(true);
@@ -54,7 +57,7 @@ export const SignInScreen = () => {
             <Text style={s.textButton}>Usar outra conta</Text>
           </TouchableOpacity>
         </View>
-        
+
         <ModalLoading modalVisible={modalLoadingSignIn} setModalVisible={setModalLoadingSignIn} />
 
       </View>

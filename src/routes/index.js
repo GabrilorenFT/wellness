@@ -7,10 +7,14 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import DashboardIcon from "../assets/images/house.svg";
 import ExamsIcon from "../assets/images/stethoscope.svg";
 import QueriesIcon from "../assets/images/user-md.svg";
+import ExercisesIcon from "../assets/images/weight.svg";
 
 import {getColor} from '../services';
 import {useGlobal} from '../hooks/useGlobal';
 import {SplashScreen, LoginScreen, Config, DashboardScreen, Exams, Queries, CreateAccountScreen, SignInScreen} from '../pages';
+import { Exercises } from '../pages/exercises';
+import ExamsRoute from './examsRoute';
+import QuerieRoute from './querieRoute';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -63,9 +67,12 @@ const TabRoutes = () => {
           if (route.name === 'queries') {
             Icon = QueriesIcon;
           }
+          if (route.name == 'exercises') {
+            Icon = ExercisesIcon;
+          }
           return <Icon color={color} width={24} height={24} />;
         },
-        tabBarInactiveTintColor: getColor("font-color"),
+        tabBarInactiveTintColor: getColor("white"),
         tabBarActiveTintColor: getColor("primary"),
         tabBarShowLabel: false,
         tabBarStyle: {
@@ -74,9 +81,10 @@ const TabRoutes = () => {
         },
       })}
     >
-      <Tab.Screen name="exams" component={Exams} />
+      <Tab.Screen name="exams" component={ExamsRoute} />
       <Tab.Screen name="dashboard" component={DashboardScreen} />
-      <Tab.Screen name="queries" component={Queries} />
+      <Tab.Screen name="queries" component={QuerieRoute} />
+      <Tab.Screen name="exercises" component={Exercises} />
     </Tab.Navigator>
   );
 }
