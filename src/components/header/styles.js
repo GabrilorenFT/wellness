@@ -20,7 +20,7 @@ const styles = () => {
     buttonNotif: {
       width: 40,
       height: 40,
-      marginLeft: 5,
+      marginRight: 20,
       alignItems: 'center',
       justifyContent: 'center',
     },
@@ -29,6 +29,7 @@ const styles = () => {
       fontSize: 24,
       fontWeight: "700",
       color: getColor('primary'),
+      marginLeft: 10
     },
 
    });

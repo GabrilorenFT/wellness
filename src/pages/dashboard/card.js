@@ -7,15 +7,15 @@ import {getColor} from "../../services";
 
 import cardIconDefault from '../../assets/images/plus.svg';
 
-export const Card = ({name, icon, styleContainer, styleText, styleIcon, iconWidth, iconHeight}) => {
+export const Card = ({name, icon, styleContainer, styleText, styleIcon, iconWidth, iconHeight, onPress}) => {
   const isDarkMode = useColorScheme() === "light";
   const s = styles();
   const Icon = icon || cardIconDefault;
   return (
-    <View style={styleContainer ? styleContainer : s.cardContainer} >
+    <TouchableOpacity style={styleContainer ? styleContainer : s.cardContainer} onPress={onPress}>
       <Icon width={iconWidth? iconWidth : 56} height={iconHeight ? iconHeight : 54} color={getColor("font-color")} style={styleIcon ? styleIcon : null}/>
       <Text style={styleText ? styleText : s.cardName}>{name}</Text>
-    </View>
+    </TouchableOpacity>
   )
 };
 

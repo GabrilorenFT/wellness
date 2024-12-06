@@ -4,6 +4,7 @@ import { useGlobal } from '../../hooks/useGlobal';
 import styles from './styles';
 import { Header } from '../../components';
 import { useNavigation } from '@react-navigation/native';
+import HeaderRoutes from '../../components/headerRoutes';
 
 export const Queries = () => {
   const { globalProps, setGlobalProps } = useGlobal();
@@ -80,7 +81,7 @@ export const Queries = () => {
 
   return (
     <>
-      <Header />
+      <HeaderRoutes title={"CONSULTAS"}/>
       <View style={s.container}>
         {/* Tabs */}
         <View style={s.tabs}>

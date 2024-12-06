@@ -4,6 +4,8 @@ import {Header, Input} from '../../../components';
 import styles from './styles';
 import CancelIcon from '../../../assets/images/cross-circle.svg'
 import SendIcon from '../../../assets/images/paper-plane.svg'
+import HeaderItem from '../../../components/headerItem';
+import { useNavigation } from '@react-navigation/native';
 
 export default function NewQuerie() {
   const [currentScreen, setCurrentScreen] = useState('menu'); // Estado para alternar telas
@@ -12,10 +14,12 @@ export default function NewQuerie() {
 
   const s = styles();
 
+  const navigation = useNavigation();
+
   const RenderMenu = () => {
     return (
       <>
-      <Header />
+      <HeaderItem title={"NOVA CONSULTA"} isBack={true}/>
         <View style={s.container}>
           <Text style={s.title}>Selecione o tipo de consulta que deseja:</Text>
           <TouchableOpacity
@@ -46,8 +50,8 @@ export default function NewQuerie() {
   const RenderConsulta = () => {
     return (
       <>
-      <Header />
-        <View style={s.container}>
+      <HeaderItem title={"NOVA CONSULTA"} isBack={true}/>
+      <View style={s.container}>
           <Text style={s.subtitle}>Nova Consulta</Text>
           <Text style={s.text}>
             Caso queira ser atendido por um médico específico, selecione-o aqui:
@@ -98,7 +102,7 @@ export default function NewQuerie() {
           <View style={s.buttonContainer}>
             <TouchableOpacity
               style={s.cancelButton}
-              onPress={() => setCurrentScreen('menu')}>
+              onPress={() => navigation.goBack()}>
               <CancelIcon color={"white"}/>
               <Text style={s.buttonText}>CANCELAR</Text>
             </TouchableOpacity>

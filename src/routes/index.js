@@ -15,6 +15,8 @@ import {SplashScreen, LoginScreen, Config, DashboardScreen, Exams, Queries, Crea
 import { Exercises } from '../pages/exercises';
 import ExamsRoute from './examsRoute';
 import QuerieRoute from './querieRoute';
+import DashboardRoute from './dashboardRoute';
+import ExercisesRoute from './exercisesRoute';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -82,9 +84,9 @@ const TabRoutes = () => {
       })}
     >
       <Tab.Screen name="exams" component={ExamsRoute} />
-      <Tab.Screen name="dashboard" component={DashboardScreen} />
+      <Tab.Screen name="dashboard" component={DashboardRoute} />
       <Tab.Screen name="queries" component={QuerieRoute} />
-      <Tab.Screen name="exercises" component={Exercises} />
+      <Tab.Screen name="exercises" component={ExercisesRoute} />
     </Tab.Navigator>
   );
 }

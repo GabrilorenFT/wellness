@@ -38,7 +38,37 @@ const styles = () => {
     icon: {
       justifyContent: 'flex-end',
       alignSelf: "flex-end"
-    }
+    },
+    card: {
+      flexDirection: 'column',
+      justifyContent: "space-between",
+      marginVertical: 20,
+    },
+    // icon: {
+    //   fontSize: 40,
+    //   marginRight: 15,
+    // },
+    value: {
+      fontSize: 36,
+      fontWeight: 'bold',
+      color: '#34c759',
+    },
+    label: {
+      fontSize: 16,
+      fontWeight: '500',
+      color: getColor('font-color'),
+      marginRight: 120
+    },
+    subtext: {
+      fontSize: 14,
+      color: getColor('box-border-color'),
+    },
+    divider: {
+      height: 1,
+      width: 370,
+      backgroundColor: '#fff',
+      marginVertical: 20,
+    },
 
    });
 };

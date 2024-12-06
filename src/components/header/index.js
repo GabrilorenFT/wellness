@@ -7,19 +7,26 @@ import {useGlobal} from '../../hooks/useGlobal';
 import {getColor, getTranslation} from '../../services';
 
 import NotificationIcon from "../../assets/images/bell.svg";
+import UserIcon from "../../assets/images/profile-circle.svg";
+import { useNavigation } from '@react-navigation/native';
 
 export const Header = ({}) => {
   const s = styles();
   const {globalProps} = useGlobal();
+
+  const navigation = useNavigation();
 
   return (
     <>
       <Statusbar/>
       <View style={s.container}>
         <View style={s.content}>
+          <TouchableOpacity style={{flexDirection:'row', marginLeft: 20}} onPress={() => navigation.navigate("MyPerfil")}>
+          <UserIcon color={"#127848"}/>
           <Text style={s.text} numberOfLines={1}>
-            {globalProps?.name ? globalProps.name : "Apenas para mostrar campo de nome"}
+            Gabriel
           </Text>
+          </TouchableOpacity>
           <TouchableOpacity style={s.buttonNotif} activeOpacity={1}>
             <NotificationIcon
               color={getColor("primary")}

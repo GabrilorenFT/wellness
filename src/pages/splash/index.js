@@ -6,7 +6,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import styles from "./styles";
 import {getColor} from '../../services';
 
-import logoName from "../../assets/images/logoName.png";
+import logoName from "../../assets/images/logo-text.png";
 
 export const SplashScreen = () => {
   const {globalProps, setGlobalProps} = useGlobal();

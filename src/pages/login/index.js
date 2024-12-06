@@ -12,7 +12,7 @@ import Eye from "../../assets/images/eye.svg";
 import EyeSlash from "../../assets/images/eye-slash.svg";
 import axios from "axios";
 
-const api = axios.create({baseURL: "http://192.168.29.195:8080/api/"})
+const api = axios.create({baseURL: "http://localhost:3000/"})
 
 export const LoginScreen = () => {
   const {globalProps, setGlobalProps, showToast} = useGlobal();
@@ -68,17 +68,18 @@ export const LoginScreen = () => {
   //   _getData();
   // }, []);
 
-  async function fetchData(email, password) {
-    console.log('a');
-      await api.post(`login`, {user: "gustavoranci", pass: "123"}).then((resp) => {
-        console.log(resp.data);
-      })
-      .catch((err) => {
-        console.log(err.response);
-      })
-      await api.post(`user/create`, {nome: "Ga Ranci", user: "Gabriel", pass: "321", tipo: "aluno"}).then((resp) => {
-        console.log(resp.data);
-      })
+  async function fetchData() {
+    await api
+      .post(`api/accounts`, {
+        "email" : "gabriel@uorak.com",
+        "password": "Teste123",
+        "password_confirmation": "Teste123"
+      },
+    {headers: {'Content-Type': 'application/json'}}
+  )
+    .then((resp) => {
+      console.log(resp.data);
+    })
       .catch((err) => {
         console.log(err.response);
       })
@@ -133,7 +134,7 @@ export const LoginScreen = () => {
           <Text style={s.textButtonSignIn}>Entrar</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity onPress={async() => {await fetchData(email, password)}}>
+        <TouchableOpacity onPress={async() => await fetchData()}>
           <Text style={s.title}>Esqueceu sua senha ?</Text>
         </TouchableOpacity>
 
